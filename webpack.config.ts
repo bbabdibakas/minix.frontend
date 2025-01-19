@@ -38,6 +38,13 @@ const config: webpack.Configuration = {
     },
     resolve: {
         extensions: ['.tsx', '.ts', '.js'],
+        preferAbsolute: true,
+        modules: [
+            path.resolve(__dirname, 'src'),
+            'node_modules'
+        ],
+        mainFiles: ['index'],
+        alias: {},
     },
     plugins: [
         new HtmlWebpackPlugin({
