@@ -18,6 +18,22 @@ const config: webpack.Configuration = {
                 use: 'ts-loader',
                 exclude: /node_modules/,
             },
+            {
+                test: /\.s[ac]ss$/i,
+                use: [
+                    "style-loader",
+                    {
+                        loader: "css-loader",
+                        options: {
+                            modules: {
+                                auto: (resPath: string) => Boolean(resPath.includes('.module.')),
+                                localIdentName: '[path][name]__[local]--[hash:base64:5]'
+                            },
+                        },
+                    },
+                    "sass-loader",
+                ],
+            },
         ],
     },
     resolve: {
