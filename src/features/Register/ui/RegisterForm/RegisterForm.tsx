@@ -4,6 +4,9 @@ import {getRegisterForm} from "../../model/selectors/getRegisterForm";
 import {registerActions} from "../../model/slice/registerSlice";
 import AppButton from "shared/ui/AppButton/AppButton";
 import {useEffect, useState} from "react";
+import {register} from "../../model/services/register";
+import {getRegisterValidateErrors} from "../../model/selectors/getRegisterValidateErrors";
+import {ValidateRegisterFormError} from "../../model/types/RegisterState";
 import * as styles from './RegisterForm.module.scss'
 
 const RegisterForm = () => {
@@ -16,6 +19,7 @@ const RegisterForm = () => {
         username,
         password
     } = useSelector(getRegisterForm)
+    const validateErrors = useSelector(getRegisterValidateErrors)
 
     const onChangeEmail = (value: string) => {
         dispatch(registerActions.setEmail(value))
@@ -35,12 +39,14 @@ const RegisterForm = () => {
 
     const onRegister = () => {
         if (isFormValid) {
-            alert("Registered!");
+
+            //@ts-expect-error починить потом
+            dispatch(register())
         }
     }
 
     // проверка на заполнение формы
-    const formFillCheck = () => {
+    const isFormFilled = () => {
         return (
             email.trim().length > 0 &&
             name.trim().length > 0 &&
@@ -50,15 +56,43 @@ const RegisterForm = () => {
     };
 
     useEffect(() => {
-        setIsFormValid(formFillCheck());
+        setIsFormValid(isFormFilled());
     }, [email, name, username, password]);
 
     return (
         <div className={styles.RegisterForm}>
-            <AppInput value={email} placeholder={'Email'} onChange={onChangeEmail}/>
-            <AppInput value={name} placeholder={'Name'} onChange={onChangeName}/>
-            <AppInput value={username} placeholder={'Username'} onChange={onChangeUsername}/>
-            <AppInput value={password} placeholder={'Password'} onChange={onChangePassword} type={"password"}/>
+            <div className={styles.title}>
+                Please enter your details
+            </div>
+            {validateErrors?.map((error, index) => (
+                <div className={styles.error} key={index}>
+                    {error}
+                </div>))
+            }
+            <AppInput
+                value={email}
+                placeholder={'Email'}
+                onChange={onChangeEmail}
+                hasError={validateErrors?.includes(ValidateRegisterFormError.INCORRECT_EMAIL)}
+            />
+            <AppInput
+                value={name}
+                placeholder={'Name'}
+                onChange={onChangeName}
+                hasError={validateErrors?.includes(ValidateRegisterFormError.INCORRECT_NAME)}
+            />
+            <AppInput
+                value={username}
+                placeholder={'Username'}
+                onChange={onChangeUsername}
+                hasError={validateErrors?.includes(ValidateRegisterFormError.INCORRECT_USERNAME)}
+            />
+            <AppInput
+                value={password}
+                placeholder={'Password'}
+                onChange={onChangePassword}
+                hasError={validateErrors?.includes(ValidateRegisterFormError.INCORRECT_PASSWORD)}
+            />
             <AppButton className={styles.button} onClick={onRegister} disabled={!isFormValid}>
                 Register
             </AppButton>

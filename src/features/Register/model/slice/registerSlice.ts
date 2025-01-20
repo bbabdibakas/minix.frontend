@@ -1,5 +1,6 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {RegisterState} from "../types/RegisterState";
+import {register} from "../services/register";
 
 const initialState: RegisterState = {
     form: {
@@ -27,6 +28,19 @@ export const registerSlice = createSlice({
             state.form.password = action.payload;
         },
     },
+    extraReducers: (builder) => {
+        builder
+            .addCase(register.pending, (state) => {
+                state.validateErrors = undefined;
+            })
+            .addCase(register.rejected, (state, action) => {
+                state.validateErrors = action.payload;
+            })
+            .addCase(register.fulfilled, (state, action: PayloadAction<string>) => {
+                state.validateErrors = undefined;
+                alert(action.payload)
+            })
+    }
 });
 
 export const {actions: registerActions} = registerSlice;
