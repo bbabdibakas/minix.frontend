@@ -1,3 +1,13 @@
 .RegisterForm > *:not(:last-child) {
   margin-bottom: 8px;
 }
+
+.RegisterForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.button {
+  width: fit-content;
+  align-self: flex-end;
+}

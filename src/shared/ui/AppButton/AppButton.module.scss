@@ -1,0 +1,28 @@
+.AppButton {
+  display: flex;
+  align-items: center;
+  font: inherit;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 16px 8px;
+  border-radius: var(--border-radius);
+  border: none;
+  outline: none;
+  background: var(--highlight-color);
+  color: var(--primary-color);
+  transition: all 0.2s ease;
+
+  &:active {
+    transform: scale(0.9);
+  }
+
+  &:hover {
+    background: var(--active-highlight-color);
+  }
+
+  &:disabled {
+    color: var(--secondary-color);
+    background: var(--disabled-highlight-color);
+    pointer-events: none;
+  }
+}
