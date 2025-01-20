@@ -1,0 +1,75 @@
+.wrapper {
+  position: relative;
+}
+
+.AppInput {
+  width: 100%;
+  box-sizing: border-box;
+  background: none;
+  padding: 8px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  color: var(--primary-color);
+  font: inherit;
+  font-weight: bold;
+  outline: none;
+  transition: all 0.2s ease;
+
+  &::placeholder {
+    opacity: 0;
+  }
+
+  &.hasError {
+    border-color: var(--error-color);
+
+    & + .placeholder {
+      color: var(--error-color);
+    }
+  }
+
+  &:disabled {
+    pointer-events: none;
+    border-color: var(--disabled-border-color);
+
+    & + .placeholder {
+      color: var(--disabled-border-color);
+    }
+  }
+
+  &:not(:placeholder-shown) {
+    border-color: var(--highlight-color);
+    padding: 28px 8px 8px;
+
+    & + .placeholder {
+      font: var(--font-m);
+      color: var(--highlight-color);
+    }
+
+    &:disabled {
+      color: var(--secondary-color);
+      border-color: var(--disabled-highlight-color);
+
+      & + .placeholder {
+        color: var(--disabled-highlight-color);
+      }
+    }
+
+    &.hasError {
+      border-color: var(--error-color);
+
+      & + .placeholder {
+        color: var(--error-color);
+      }
+    }
+  }
+}
+
+.placeholder {
+  pointer-events: none;
+  left: 9px;
+  top: 9px;
+  position: absolute;
+  font: inherit;
+  color: var(--border-color);
+  transition: all 0.2s ease;
+}
