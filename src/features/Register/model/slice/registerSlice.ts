@@ -8,7 +8,8 @@ const initialState: RegisterState = {
         name: '',
         username: '',
         password: ''
-    }
+    },
+    isLoading: false
 }
 
 export const registerSlice = createSlice({
@@ -32,13 +33,15 @@ export const registerSlice = createSlice({
         builder
             .addCase(register.pending, (state) => {
                 state.validateErrors = undefined;
+                state.isLoading = true
             })
             .addCase(register.rejected, (state, action) => {
                 state.validateErrors = action.payload;
+                state.isLoading = false
             })
-            .addCase(register.fulfilled, (state, action: PayloadAction<string>) => {
+            .addCase(register.fulfilled, (state) => {
                 state.validateErrors = undefined;
-                alert(action.payload)
+                state.isLoading = false
             })
     }
 });

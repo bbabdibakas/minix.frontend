@@ -14,6 +14,7 @@ export interface RegisterForm {
 }
 
 export interface RegisterState {
-    form: RegisterForm
+    form: RegisterForm,
+    isLoading: boolean
     validateErrors?: ValidateRegisterFormError[]
 }

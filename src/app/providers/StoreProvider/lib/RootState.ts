@@ -1,6 +1,8 @@
 import {RegisterState} from "features/Register";
+import {UserState} from "entities/User";
 
 export interface RootState {
+    user: UserState
     register: RegisterState
 }
 

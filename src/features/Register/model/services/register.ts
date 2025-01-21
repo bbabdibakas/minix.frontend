@@ -3,16 +3,17 @@ import {ThunkConfig} from "app/providers/StoreProvider";
 import {ValidateRegisterFormError} from "features/Register/model/types/RegisterState";
 import {getRegisterForm} from "features/Register/model/selectors/getRegisterForm";
 import {validateForm} from "features/Register/model/services/validateForm";
-
+import axios from "axios";
+import {User, userActions} from "entities/User";
 
 export const register = createAsyncThunk<
-    string,
+    User,
     void,
     ThunkConfig<ValidateRegisterFormError[]>
 >(
     'auth/register',
     async (_, thunkApi) => {
-        const {rejectWithValue, getState} = thunkApi;
+        const {rejectWithValue, dispatch, getState} = thunkApi;
 
         const form = getRegisterForm(getState())
         const errors = validateForm(form)
@@ -22,9 +23,15 @@ export const register = createAsyncThunk<
         }
 
         try {
-            //здесь будет запрос на регистрацию на сервер
+            const response = await axios.post<User>('http://localhost:8000/api/auth/register', form)
 
-            return 'registered';
+            if (!response.data) {
+                throw new Error();
+            }
+
+            dispatch(userActions.setUserData(response.data));
+
+            return response.data;
         } catch (e) {
             return rejectWithValue([ValidateRegisterFormError.SERVER_ERROR]);
         }
