@@ -1,12 +1,14 @@
 import {configureStore, ReducersMapObject} from "@reduxjs/toolkit";
 import {RootState} from "./RootState";
-import {registerReducer} from "features/Register";
 import {userReducer} from "entities/User";
+import {registerReducer} from "features/Register";
+import {loginReducer} from "features/Login";
 
 export function createReduxStore(initialState?: RootState, asyncReducers?: ReducersMapObject<RootState>) {
     const rootReducers: ReducersMapObject<RootState> = {
         user: userReducer,
         register: registerReducer,
+        login: loginReducer,
     }
 
     const store = configureStore({

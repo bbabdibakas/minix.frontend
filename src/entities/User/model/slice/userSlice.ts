@@ -8,8 +8,19 @@ export const userSlice = createSlice({
     initialState,
     reducers: {
         setUserData: (state, action: PayloadAction<User>) => {
-            state.userDate = action.payload;
+            state.userData = action.payload;
+            localStorage.setItem('USER_DATA', JSON.stringify(state.userData));
         },
+        initUserData: (state) => {
+            const userData = localStorage.getItem('USER_DATA')
+            if (userData) {
+                state.userData = JSON.parse(userData);
+            }
+        },
+        removeUserData: (state) => {
+            state.userData = undefined
+            localStorage.removeItem('USER_DATA')
+        }
     }
 })
 

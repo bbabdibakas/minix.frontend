@@ -1,21 +1,21 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {ThunkConfig} from "app/providers/StoreProvider";
-import {ValidateRegisterFormError} from "features/Register/model/types/RegisterState";
-import {getRegisterForm} from "features/Register/model/selectors/getRegisterForm";
-import {validateForm} from "features/Register/model/services/validateForm";
+import {ValidateLoginFormError} from "../types/LoginState";
+import {getLoginForm} from "../selectors/getLoginForm";
+import {validateForm} from "./validateForm";
 import axios from "axios";
 import {User, userActions} from "entities/User";
 
-export const register = createAsyncThunk<
+export const loginByUsername = createAsyncThunk<
     User,
     void,
-    ThunkConfig<ValidateRegisterFormError[]>
+    ThunkConfig<ValidateLoginFormError[]>
 >(
-    'auth/register',
+    'auth/loginByUsername',
     async (_, thunkApi) => {
         const {rejectWithValue, dispatch, getState} = thunkApi;
 
-        const form = getRegisterForm(getState())
+        const form = getLoginForm(getState())
         const errors = validateForm(form)
 
         if (errors.length) {
@@ -23,7 +23,7 @@ export const register = createAsyncThunk<
         }
 
         try {
-            const response = await axios.post<User>('http://localhost:8000/api/registration', form)
+            const response = await axios.post<User>('http://localhost:8000/api/loginByUsername', form)
 
             if (!response.data) {
                 throw new Error();
@@ -33,7 +33,7 @@ export const register = createAsyncThunk<
 
             return response.data;
         } catch (e) {
-            return rejectWithValue([ValidateRegisterFormError.SERVER_ERROR]);
+            return rejectWithValue([ValidateLoginFormError.SERVER_ERROR]);
         }
     },
 );
