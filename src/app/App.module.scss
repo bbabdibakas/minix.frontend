@@ -1,0 +1,16 @@
+.form {
+  margin-top: 16px;
+  width: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title {
+  display: flex;
+  font: var(--font-m);
+}
+
+.button {
+  margin-left: 8px;
+}

@@ -1,20 +1,24 @@
 .AppButton {
   display: flex;
   align-items: center;
+  justify-content: center;
   font: inherit;
-  font-weight: bold;
   cursor: pointer;
-  padding: 16px 8px;
-  border-radius: var(--border-radius);
   border: none;
   outline: none;
-  background: var(--highlight-color);
-  color: var(--primary-color);
   transition: all 0.2s ease;
 
   &:active {
     transform: scale(0.9);
   }
+}
+
+.primary {
+  border-radius: var(--border-radius);
+  background: var(--highlight-color);
+  font-weight: bold;
+  padding: 16px 8px;
+  color: var(--primary-color);
 
   &:hover {
     background: var(--active-highlight-color);
@@ -24,5 +28,14 @@
     color: var(--secondary-color);
     background: var(--disabled-highlight-color);
     pointer-events: none;
+  }
+}
+
+.text {
+  color: var(--highlight-color);
+  background: none;
+
+  &:hover {
+    color: var(--active-highlight-color);
   }
 }

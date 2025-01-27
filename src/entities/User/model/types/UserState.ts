@@ -3,7 +3,7 @@ export interface User {
     email: string
     name: string
     username: string
-    isActivated: number
+    isActivated: boolean
     activationLink: string
 }
 
