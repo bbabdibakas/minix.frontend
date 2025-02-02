@@ -1,12 +1,15 @@
 export interface User {
     id: number
-    email: string
     name: string
     username: string
-    isActivated: boolean
-    activationLink: string
+}
+
+export interface UserData {
+    user?: User
+    accessToken?: string
+    refreshToken?: string
 }
 
 export interface UserState {
-    userData?: User
+    userData?: UserData,
 }

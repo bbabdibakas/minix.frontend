@@ -4,7 +4,6 @@ import {register} from "../services/register";
 
 const initialState: RegisterState = {
     form: {
-        email: '',
         name: '',
         username: '',
         password: ''
@@ -16,9 +15,6 @@ export const registerSlice = createSlice({
     name: 'register',
     initialState,
     reducers: {
-        setEmail: (state, action: PayloadAction<string>) => {
-            state.form.email = action.payload;
-        },
         setName: (state, action: PayloadAction<string>) => {
             state.form.name = action.payload;
         },

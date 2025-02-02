@@ -2,14 +2,10 @@ import {RegisterForm, ValidateRegisterFormError} from "../../model/types/Registe
 
 export const validateForm = (form: RegisterForm) => {
     const {
-        email, name, username, password,
+        name, username, password,
     } = form;
 
     const errors: ValidateRegisterFormError[] = [];
-
-    if (!email.includes('@')) {
-        errors.push(ValidateRegisterFormError.INCORRECT_EMAIL);
-    }
 
     if (name.trim().length <= 2) {
         errors.push(ValidateRegisterFormError.INCORRECT_NAME);

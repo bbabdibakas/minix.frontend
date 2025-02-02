@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {User, UserState} from "entities/User";
+import {UserData, UserState} from "../types/UserState";
 
 const initialState: UserState = {}
 
@@ -7,7 +7,7 @@ export const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        setUserData: (state, action: PayloadAction<User>) => {
+        setUserData: (state, action: PayloadAction<UserData>) => {
             state.userData = action.payload;
             localStorage.setItem('USER_DATA', JSON.stringify(state.userData));
         },

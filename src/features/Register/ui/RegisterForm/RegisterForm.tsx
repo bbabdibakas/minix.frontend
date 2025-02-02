@@ -16,17 +16,12 @@ const RegisterForm = () => {
     const [isFormValid, setIsFormValid] = useState<boolean>(false);
 
     const {
-        email,
         name,
         username,
         password
     } = useSelector(getRegisterForm)
     const validateErrors = useSelector(getRegisterValidateErrors)
     const isLoading = useSelector(getRegisterIsLoading)
-
-    const onChangeEmail = (value: string) => {
-        dispatch(registerActions.setEmail(value))
-    }
 
     const onChangeName = (value: string) => {
         dispatch(registerActions.setName(value))
@@ -57,7 +52,6 @@ const RegisterForm = () => {
         }
         // проверка на заполнение формы
         return (
-            email.trim().length > 0 &&
             name.trim().length > 0 &&
             username.trim().length > 0 &&
             password.trim().length > 0
@@ -66,7 +60,7 @@ const RegisterForm = () => {
 
     useEffect(() => {
         setIsFormValid(isFormFilled());
-    }, [email, name, username, password, isLoading]);
+    }, [name, username, password, isLoading]);
 
     return (
         <div className={styles.RegisterForm}>
@@ -78,13 +72,6 @@ const RegisterForm = () => {
                     {error}
                 </div>))
             }
-            <AppInput
-                value={email}
-                placeholder={'Email'}
-                onChange={onChangeEmail}
-                disabled={isLoading}
-                hasError={validateErrors?.includes(ValidateRegisterFormError.INCORRECT_EMAIL)}
-            />
             <AppInput
                 value={name}
                 placeholder={'Name'}

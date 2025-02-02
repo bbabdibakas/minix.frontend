@@ -4,10 +4,10 @@ import {ValidateRegisterFormError} from "features/Register/model/types/RegisterS
 import {getRegisterForm} from "features/Register/model/selectors/getRegisterForm";
 import {validateForm} from "features/Register/model/services/validateForm";
 import axios from "axios";
-import {User, userActions} from "entities/User";
+import {UserData, userActions} from "entities/User";
 
 export const register = createAsyncThunk<
-    User,
+    UserData,
     void,
     ThunkConfig<ValidateRegisterFormError[]>
 >(
@@ -23,7 +23,7 @@ export const register = createAsyncThunk<
         }
 
         try {
-            const response = await axios.post<User>('http://localhost:8000/api/registration', form)
+            const response = await axios.post<UserData>('http://localhost:8000/api/registration', form)
 
             if (!response.data) {
                 throw new Error();

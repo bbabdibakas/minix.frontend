@@ -4,10 +4,10 @@ import {ValidateLoginFormError} from "../types/LoginState";
 import {getLoginForm} from "../selectors/getLoginForm";
 import {validateForm} from "./validateForm";
 import axios from "axios";
-import {User, userActions} from "entities/User";
+import {UserData, userActions} from "entities/User";
 
 export const loginByUsername = createAsyncThunk<
-    User,
+    UserData,
     void,
     ThunkConfig<ValidateLoginFormError[]>
 >(
@@ -23,7 +23,7 @@ export const loginByUsername = createAsyncThunk<
         }
 
         try {
-            const response = await axios.post<User>('http://localhost:8000/api/loginByUsername', form)
+            const response = await axios.post<UserData>('http://localhost:8000/api/loginByUsername', form)
 
             if (!response.data) {
                 throw new Error();
