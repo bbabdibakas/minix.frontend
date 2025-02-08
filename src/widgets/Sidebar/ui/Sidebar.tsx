@@ -2,6 +2,7 @@ import AppButton from "shared/ui/AppButton/AppButton";
 import {userActions} from "entities/User";
 import {useAppDispatch} from "shared/lib/useAppDispatch/useAppDispatch";
 import * as styles from './Sidebar.module.scss'
+import {Link} from "react-router";
 
 const Sidebar = () => {
     const dispatch = useAppDispatch()
@@ -13,10 +14,12 @@ const Sidebar = () => {
     return (
         <div className={styles.Sidebar}>
             <div className={styles.links}>
-                <a href={'/'}>Main</a>
-                <a href={'/'}>Profile</a>
-                <a href={'/'}>Community</a>
-                <a href={'/'}>Bookmark</a>
+                <Link to={'/'}>
+                    Main
+                </Link>
+                <Link to={'/profile'}>
+                    Profile
+                </Link>
             </div>
             <AppButton onClick={onLogout}>
                 Logout
