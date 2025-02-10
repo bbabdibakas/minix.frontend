@@ -7,9 +7,7 @@ import AppButton, {AppButtonTheme} from "shared/ui/AppButton/AppButton";
 import {LoginModal} from "features/Login";
 import {Sidebar} from "widgets/Sidebar";
 import * as styles from "./App.module.scss"
-import {Route, Routes} from "react-router";
-import {MainPage} from "pages/MainPage";
-import {ProfilePage} from "pages/ProfilePage";
+import {AppRouter} from "app/providers/AppRouter";
 
 const App = () => {
     const dispatch = useAppDispatch()
@@ -33,10 +31,7 @@ const App = () => {
             <div className="wrapper">
                 <div className="container">
                     <Sidebar/>
-                    <Routes>
-                        <Route path={'/'} element={<MainPage/>}/>
-                        <Route path={'/profile'} element={<ProfilePage/>}/>
-                    </Routes>
+                    <AppRouter/>
                 </div>
             </div>
         )
