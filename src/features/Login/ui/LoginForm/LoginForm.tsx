@@ -10,10 +10,13 @@ import {AppInput} from "shared/ui/AppInput/AppInput";
 import AppButton from "shared/ui/AppButton/AppButton";
 import {loginByUsername} from "../../model/services/loginByUsername";
 import * as styles from "./LoginForm.module.scss";
+import {useNavigate} from "react-router";
+import {routePath} from "app/providers/AppRouter";
 
 const LoginForm = () => {
     const dispatch = useAppDispatch();
     const [isFormValid, setIsFormValid] = useState<boolean>(false);
+    const navigate = useNavigate();
 
     const {
         username,
@@ -34,7 +37,7 @@ const LoginForm = () => {
         if (isFormValid) {
             const response = await dispatch(loginByUsername())
             if (response.meta.requestStatus === 'fulfilled') {
-                alert('Logged!')
+                navigate(routePath.main)
             }
         }
     }

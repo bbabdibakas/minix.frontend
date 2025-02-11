@@ -1,18 +1,19 @@
 import {Route, Routes} from "react-router";
-import {routeConfig} from "app/providers/AppRouter/lib/routeConfig";
+import {AppRoutesProps, routeConfig} from "../lib/routeConfig";
+import {RequireAuth} from "./RequireAuth";
 
 const AppRouter = () => {
+    const renderWithWrapper = (route: AppRoutesProps) => (
+        <Route
+            key={route.path}
+            path={route.path}
+            element={route.isRequiredAuth ? <RequireAuth>{route.element}</RequireAuth> : route.element}
+        />
+    )
+
     return (
         <Routes>
-            {
-                Object.values(routeConfig).map(({path, element}) => (
-                    <Route
-                        path={path}
-                        key={path}
-                        element={element}
-                    />
-                ))
-            }
+            {Object.values(routeConfig).map(renderWithWrapper)}
         </Routes>
     )
 }

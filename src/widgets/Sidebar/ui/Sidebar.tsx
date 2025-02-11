@@ -8,6 +8,7 @@ import ProfilePageIcon from "shared/assets/icons/ProfilePageIcon.svg"
 import MainPageActiveIcon from "shared/assets/icons/MainPageActiveIcon.svg"
 import ProfilePageActiveIcon from "shared/assets/icons/ProfilePageActiveIcon.svg"
 import {useLocation} from "react-router";
+import {routePath} from "app/providers/AppRouter";
 
 const Sidebar = () => {
     const dispatch = useAppDispatch()
@@ -20,14 +21,14 @@ const Sidebar = () => {
     return (
         <div className={styles.Sidebar}>
             <div className={styles.links}>
-                <AppLink to={'/'} className={styles.link}>
-                    {location.pathname === '/' ? <MainPageActiveIcon/> : <MainPageIcon />}
+                <AppLink to={routePath.main} className={styles.link}>
+                    {location.pathname === routePath.main? <MainPageActiveIcon/> : <MainPageIcon />}
                     <div className={styles.item}>
                         Main
                     </div>
                 </AppLink>
-                <AppLink to={'/profile'} className={styles.link}>
-                    {location.pathname === '/profile' ? <ProfilePageActiveIcon/> : <ProfilePageIcon />}
+                <AppLink to={routePath.profile} className={styles.link}>
+                    {location.pathname === routePath.profile ? <ProfilePageActiveIcon/> : <ProfilePageIcon />}
                     <div className={styles.item}>
                         Profile
                     </div>
