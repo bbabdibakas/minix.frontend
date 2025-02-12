@@ -4,7 +4,7 @@ import {userReducer} from "entities/User";
 import {registerReducer} from "features/Register";
 import {loginReducer} from "features/Login";
 
-export function createReduxStore(initialState?: RootState, asyncReducers?: ReducersMapObject<RootState>) {
+export function createReduxStore(initialState?: RootState) {
     const rootReducers: ReducersMapObject<RootState> = {
         user: userReducer,
         register: registerReducer,
@@ -13,7 +13,7 @@ export function createReduxStore(initialState?: RootState, asyncReducers?: Reduc
 
     const store = configureStore({
         reducer: rootReducers,
-        devTools: true,
+        devTools: __IS_DEV__,
         preloadedState: initialState
     })
 
