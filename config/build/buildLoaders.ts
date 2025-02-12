@@ -1,4 +1,7 @@
-export const buildLoaders = () => {
+import {BuildOptions} from "./types/BuildOptions";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
+
+export const buildLoaders = ({isDev}: BuildOptions) => {
     const svgLoader = {
         test: /\.svg$/,
         use: ['@svgr/webpack'],
@@ -13,13 +16,13 @@ export const buildLoaders = () => {
     const cssLoader = {
         test: /\.s[ac]ss$/i,
         use: [
-            "style-loader",
+            isDev ? "style-loader" : MiniCssExtractPlugin.loader,
             {
                 loader: "css-loader",
                 options: {
                     modules: {
                         auto: (resPath: string) => Boolean(resPath.includes('.module.')),
-                        localIdentName: '[path][name]__[local]--[hash:base64:5]'
+                        localIdentName: isDev ? '[path][name]__[local]--[hash:base64:5]' : '[hash:base64:8]',
                     },
                 },
             },
