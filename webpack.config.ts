@@ -1,66 +1,18 @@
-import path from 'path'
-import HtmlWebpackPlugin from 'html-webpack-plugin'
-import webpack from 'webpack';
-import webpackDevServer from 'webpack-dev-server';
+import path from "path";
+import {BuildEnv, BuildPath} from "./config/build/types/BuildOptions";
+import {buildWebpackConfig} from "./config/build/buildWebpackConfig";
 
-const config: webpack.Configuration = {
-    mode: 'development',
-    entry: path.resolve(__dirname, 'src', 'index.tsx'),
-    output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename: '[name].[contenthash:8].js',
-        clean: true
-    },
-    module: {
-        rules: [
-            {
-                test: /\.svg$/,
-                use: ['@svgr/webpack'],
-            },
-            {
-                test: /\.tsx?$/,
-                use: 'ts-loader',
-                exclude: /node_modules/,
-            },
-            {
-                test: /\.s[ac]ss$/i,
-                use: [
-                    "style-loader",
-                    {
-                        loader: "css-loader",
-                        options: {
-                            modules: {
-                                auto: (resPath: string) => Boolean(resPath.includes('.module.')),
-                                localIdentName: '[path][name]__[local]--[hash:base64:5]'
-                            },
-                        },
-                    },
-                    "sass-loader",
-                ],
-            },
-        ],
-    },
-    resolve: {
-        extensions: ['.tsx', '.ts', '.js'],
-        preferAbsolute: true,
-        modules: [
-            path.resolve(__dirname, 'src'),
-            'node_modules'
-        ],
-        mainFiles: ['index'],
-        alias: {},
-    },
-    plugins: [
-        new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, 'public', 'index.html'),
-        })
-    ],
-    devtool: 'inline-source-map',
-    devServer: {
-        port: 3000,
-        open: true,
-        historyApiFallback: true
+export default (env: BuildEnv) => {
+    const paths: BuildPath = {
+        entry: path.resolve(__dirname, 'src', 'index.tsx'),
+        src: path.resolve(__dirname, 'src'),
+        html: path.resolve(__dirname, 'public', 'index.html'),
+        output: path.resolve(__dirname, 'dist'),
     }
-};
 
-export default config;
+    const mode = env.mode || 'development'
+    const port = env.port || 3001
+    const isDev = mode === 'development'
+
+    return buildWebpackConfig({mode, paths, isDev, port})
+}
