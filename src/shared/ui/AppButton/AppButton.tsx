@@ -11,7 +11,7 @@ interface AppButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     theme?: AppButtonTheme
 }
 
-const AppButton = (props: AppButtonProps) => {
+export const AppButton = (props: AppButtonProps) => {
     const {
         children,
         className,
@@ -29,5 +29,3 @@ const AppButton = (props: AppButtonProps) => {
         </button>
     )
 }
-
-export default AppButton

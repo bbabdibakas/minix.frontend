@@ -7,11 +7,12 @@ import {getLoginIsLoading} from "../../model/selectors/getLoginIsLoading";
 import {loginActions} from "../../model/slice/loginSlice";
 import {ValidateLoginFormError} from "../../model/types/LoginState";
 import {AppInput} from "shared/ui/AppInput/AppInput";
-import AppButton from "shared/ui/AppButton/AppButton";
+import {AppButton} from "shared/ui/AppButton/AppButton";
 import {loginByUsername} from "../../model/services/loginByUsername";
-import * as styles from "./LoginForm.module.scss";
 import {useNavigate} from "react-router";
 import {routePath} from "app/providers/AppRouter";
+import {AppPageLoader} from "shared/ui/AppPageLoader/AppPageLoader";
+import * as styles from "./LoginForm.module.scss";
 
 const LoginForm = () => {
     const dispatch = useAppDispatch();
@@ -58,6 +59,14 @@ const LoginForm = () => {
         setIsFormValid(isFormFilled());
     }, [username, password, isLoading]);
 
+    if (isLoading) {
+        return (
+            <div className={styles.LoginForm}>
+                <AppPageLoader/>
+            </div>
+        )
+    }
+
     return (
         <div className={styles.LoginForm}>
             <div className={styles.title}>
@@ -82,7 +91,6 @@ const LoginForm = () => {
                 disabled={isLoading}
                 hasError={validateErrors?.includes(ValidateLoginFormError.INCORRECT_PASSWORD)}
             />
-            {isLoading && 'Loading...'}
             <AppButton className={styles.button} onClick={onLogin} disabled={!isFormValid}>
                 Login
             </AppButton>

@@ -2,18 +2,22 @@ import {AppInput} from "shared/ui/AppInput/AppInput";
 import {useSelector} from "react-redux";
 import {getRegisterForm} from "../../model/selectors/getRegisterForm";
 import {registerActions} from "../../model/slice/registerSlice";
-import AppButton from "shared/ui/AppButton/AppButton";
+import {AppButton} from "shared/ui/AppButton/AppButton";
 import {useEffect, useState} from "react";
 import {register} from "../../model/services/register";
 import {getRegisterValidateErrors} from "../../model/selectors/getRegisterValidateErrors";
 import {ValidateRegisterFormError} from "../../model/types/RegisterState";
 import {getRegisterIsLoading} from "../../model/selectors/getRegisterIsLoading";
 import {useAppDispatch} from "shared/lib/useAppDispatch/useAppDispatch";
+import {AppPageLoader} from "shared/ui/AppPageLoader/AppPageLoader";
+import {routePath} from "app/providers/AppRouter";
+import {useNavigate} from "react-router";
 import * as styles from './RegisterForm.module.scss'
 
 const RegisterForm = () => {
     const dispatch = useAppDispatch();
     const [isFormValid, setIsFormValid] = useState<boolean>(false);
+    const navigate = useNavigate();
 
     const {
         name,
@@ -39,7 +43,7 @@ const RegisterForm = () => {
         if (isFormValid) {
             const response = await dispatch(register())
             if (response.meta.requestStatus === 'fulfilled') {
-                alert('Registered!')
+                navigate(routePath.main)
             }
         }
     }
@@ -61,6 +65,14 @@ const RegisterForm = () => {
     useEffect(() => {
         setIsFormValid(isFormFilled());
     }, [name, username, password, isLoading]);
+
+    if (isLoading) {
+        return (
+            <div className={styles.RegisterForm}>
+                <AppPageLoader/>
+            </div>
+        )
+    }
 
     return (
         <div className={styles.RegisterForm}>
@@ -93,7 +105,6 @@ const RegisterForm = () => {
                 disabled={isLoading}
                 hasError={validateErrors?.includes(ValidateRegisterFormError.INCORRECT_PASSWORD)}
             />
-            {isLoading && 'Loading...'}
             <AppButton className={styles.button} onClick={onRegister} disabled={!isFormValid}>
                 Register
             </AppButton>

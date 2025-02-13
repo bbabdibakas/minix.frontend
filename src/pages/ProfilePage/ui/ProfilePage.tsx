@@ -1,7 +1,9 @@
+import {ProfileCard} from "entities/Profile";
+
 const ProfilePage = () => {
     return (
         <div className='page'>
-            ProfilePage
+            <ProfileCard/>
         </div>
     )
 }

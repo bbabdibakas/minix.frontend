@@ -1,7 +1,8 @@
 .Sidebar {
-  width: 300px;
+  min-width: 200px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   padding: 8px;
   border-right: 1px solid var(--border-color);
 }
@@ -19,7 +20,7 @@
   padding: 8px;
   display: flex;
   align-items: center;
-  border-radius: 10px;
+  border-radius: var(--border-radius);
   width: fit-content;
 
   &:hover {

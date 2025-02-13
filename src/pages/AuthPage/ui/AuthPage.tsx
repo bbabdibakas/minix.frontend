@@ -1,5 +1,5 @@
 import {RegisterForm} from "features/Register";
-import AppButton, {AppButtonTheme} from "shared/ui/AppButton/AppButton";
+import {AppButton, AppButtonTheme} from "shared/ui/AppButton/AppButton";
 import {LoginModal} from "features/Login";
 import {useState} from "react";
 import * as styles from "./AuthPage.module.scss";
