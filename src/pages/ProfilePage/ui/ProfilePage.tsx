@@ -3,7 +3,7 @@ import {ProfileCard} from "entities/Profile";
 const ProfilePage = () => {
     return (
         <div className='page'>
-            <ProfileCard/>
+            <ProfileCard profileId={'1'}/>
         </div>
     )
 }

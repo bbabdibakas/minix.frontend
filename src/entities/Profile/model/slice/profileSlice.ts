@@ -1,19 +1,31 @@
-import {createSlice} from "@reduxjs/toolkit";
-import {ProfileState} from '../types/ProfileState';
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {Profile, ProfileState} from '../types/ProfileState';
+import {fetchProfileDataById} from "../services/fetchProfileDataById";
 
 const initialState: ProfileState = {
-    profileData: {
-        id: 1,
-        name: 'Bekzat Abdibakas',
-        username: 'babdibakas',
-        bio: 'Егошнего/Ихний'
-    }
+    isLoading: false
 }
 
 export const profileSlice = createSlice({
     name: 'profile',
     initialState,
-    reducers: {}
+    reducers: {},
+    extraReducers: (builder) => {
+        builder
+            .addCase(fetchProfileDataById.pending, (state) => {
+                state.validateErrors = undefined;
+                state.isLoading = true
+            })
+            .addCase(fetchProfileDataById.rejected, (state, action)=> {
+                state.isLoading = false
+                state.validateErrors = action.payload
+            })
+            .addCase(fetchProfileDataById.fulfilled, (state, action: PayloadAction<Profile>) => {
+                state.validateErrors = undefined;
+                state.isLoading = false
+                state.profileData = action.payload
+            })
+    }
 })
 
 export const {actions: profileActions} = profileSlice;
