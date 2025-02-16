@@ -1,29 +1,22 @@
-import {useSelector} from "react-redux";
 import {AppPageLoader} from "shared/ui/AppPageLoader/AppPageLoader";
-import {getProfileData} from "../../model/selectors/getProfileData";
-import {getProfileIsLoading} from "../../model/selectors/getProfileIsLoading";
-import {getProfileValidateErrors} from "../../model/selectors/getProfileValidateErrors";
-import {fetchProfileDataById} from "../../model/services/fetchProfileDataById";
-import {useEffect} from "react";
-import {useAppDispatch} from "shared/lib/useAppDispatch/useAppDispatch";
+import {Profile, ValidateProfileError} from "entities/Profile";
+import AvatarPlaceholder from "shared/assets/images/AvatarPlaceholder.png"
 import * as styles from "./ProfileCard.module.scss";
 
 export interface ProfileCardProps {
-    profileId: string
+    profileData?: Profile,
+    isLoading: boolean,
+    validateErrors?: ValidateProfileError[]
 }
 
-const ProfileCard = ({profileId}: ProfileCardProps) => {
-    const dispatch = useAppDispatch();
-
-    const profileData = useSelector(getProfileData)
-    const isLoading = useSelector(getProfileIsLoading)
-    const validateErrors = useSelector(getProfileValidateErrors)
+const ProfileCard = (props: ProfileCardProps) => {
+    const {
+        profileData,
+        isLoading,
+        validateErrors
+    } = props
 
     let content
-
-    useEffect(() => {
-        dispatch(fetchProfileDataById(profileId))
-    }, [])
 
     if (isLoading) {
         content = (
@@ -41,6 +34,13 @@ const ProfileCard = ({profileId}: ProfileCardProps) => {
         content = (
             <div className={styles.ProfileCard}>
                 <div className={styles.cover}/>
+                <div className={styles.avatarWrapper}>
+                    <img
+                        src={AvatarPlaceholder}
+                        className={styles.avatar}
+                        alt="Avatar"
+                    />
+                </div>
                 <div className={styles.info}>
                     <div className={styles.name}>
                         {profileData?.name}

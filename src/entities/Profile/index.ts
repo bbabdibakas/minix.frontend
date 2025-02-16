@@ -1,14 +1,21 @@
+import {Profile, ProfileState, ValidateProfileError} from "./model/types/ProfileState"
 import {profileActions, profileReducer} from "./model/slice/profileSlice"
-import {Profile, ProfileState} from "./model/types/ProfileState"
-import ProfileCard from "./ui/ProfileCard/ProfileCard"
+import {getProfileData} from "./model/selectors/getProfileData"
+import {getProfileIsLoading} from "./model/selectors/getProfileIsLoading"
+import {getProfileValidateErrors} from "./model/selectors/getProfileValidateErrors"
+import {fetchProfileDataById} from "./model/services/fetchProfileDataById"
 
 export type {
     Profile,
-    ProfileState
+    ProfileState,
+    ValidateProfileError
 }
 
 export {
     profileActions,
     profileReducer,
-    ProfileCard
+    getProfileData,
+    getProfileIsLoading,
+    getProfileValidateErrors,
+    fetchProfileDataById
 }

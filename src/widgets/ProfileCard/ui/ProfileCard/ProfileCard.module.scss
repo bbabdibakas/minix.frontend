@@ -1,0 +1,43 @@
+.ProfileCard {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.cover {
+  height: 100px;
+  width: 100%;
+  background: #C30052;
+}
+
+.avatarWrapper {
+  top: 50px;
+  left: 16px;
+  position: absolute;
+  width: 100px;
+  height: 100px;
+}
+
+.avatar {
+  top: -50px;
+  object-fit: contain;
+  border-radius: 10px;
+  border: 1px solid var(--app-bg-color);
+}
+
+.info {
+  margin-top: 50px;
+  padding: 16px;
+}
+
+.name {
+  font-weight: bold;
+}
+
+.username {
+  color: var(--secondary-color);
+}
+
+.bio {
+  font: var(--font-m);
+}

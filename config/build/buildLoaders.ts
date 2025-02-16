@@ -2,6 +2,15 @@ import {BuildOptions} from "./types/BuildOptions";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 
 export const buildLoaders = ({isDev}: BuildOptions) => {
+    const fileLoader = {
+        test: /\.(png|jpe?g|gif|woff2|woff)$/i,
+        use: [
+            {
+                loader: 'file-loader',
+            },
+        ],
+    };
+
     const svgLoader = {
         test: /\.svg$/,
         use: ['@svgr/webpack'],
@@ -31,6 +40,7 @@ export const buildLoaders = ({isDev}: BuildOptions) => {
     }
 
     return [
+        fileLoader,
         svgLoader,
         typescriptLoader,
         cssLoader
