@@ -16,7 +16,6 @@ import * as styles from './RegisterForm.module.scss'
 
 const RegisterForm = () => {
     const dispatch = useAppDispatch();
-    const [isFormValid, setIsFormValid] = useState<boolean>(false);
     const navigate = useNavigate();
 
     const {
@@ -40,31 +39,11 @@ const RegisterForm = () => {
     }
 
     const onRegister = async () => {
-        if (isFormValid) {
-            const response = await dispatch(register())
-            if (response.meta.requestStatus === 'fulfilled') {
-                navigate(routePath.main)
-            }
+        const response = await dispatch(register())
+        if (response.meta.requestStatus === 'fulfilled') {
+            navigate(routePath.main)
         }
     }
-
-
-    const isFormFilled = () => {
-        // проверка на загрузку
-        if (isLoading) {
-            return !isLoading
-        }
-        // проверка на заполнение формы
-        return (
-            name.trim().length > 0 &&
-            username.trim().length > 0 &&
-            password.trim().length > 0
-        );
-    };
-
-    useEffect(() => {
-        setIsFormValid(isFormFilled());
-    }, [name, username, password, isLoading]);
 
     if (isLoading) {
         return (
@@ -105,7 +84,7 @@ const RegisterForm = () => {
                 disabled={isLoading}
                 hasError={validateErrors?.includes(ValidateRegisterFormError.INCORRECT_PASSWORD)}
             />
-            <AppButton className={styles.button} onClick={onRegister} disabled={!isFormValid}>
+            <AppButton className={styles.button} onClick={onRegister}>
                 Register
             </AppButton>
         </div>

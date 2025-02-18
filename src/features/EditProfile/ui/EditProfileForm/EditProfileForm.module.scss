@@ -1,0 +1,24 @@
+.EditProfileForm > *:not(:last-child) {
+  margin-bottom: 8px;
+}
+
+.EditProfileForm {
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.error {
+  font: var(--font-m);
+  color: var(--error-color);
+}
+
+.button {
+  width: fit-content;
+  align-self: flex-end;
+}

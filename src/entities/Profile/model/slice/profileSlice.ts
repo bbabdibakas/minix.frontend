@@ -9,19 +9,23 @@ const initialState: ProfileState = {
 export const profileSlice = createSlice({
     name: 'profile',
     initialState,
-    reducers: {},
+    reducers: {
+        setProfileData: (state, action: PayloadAction<Profile>) => {
+            state.profileData = action.payload;
+        }
+    },
     extraReducers: (builder) => {
         builder
             .addCase(fetchProfileDataById.pending, (state) => {
-                state.validateErrors = undefined;
+                state.serverError = undefined;
                 state.isLoading = true
             })
             .addCase(fetchProfileDataById.rejected, (state, action)=> {
                 state.isLoading = false
-                state.validateErrors = action.payload
+                state.serverError = action.payload
             })
             .addCase(fetchProfileDataById.fulfilled, (state, action: PayloadAction<Profile>) => {
-                state.validateErrors = undefined;
+                state.serverError = undefined;
                 state.isLoading = false
                 state.profileData = action.payload
             })

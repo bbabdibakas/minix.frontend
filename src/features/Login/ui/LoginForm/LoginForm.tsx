@@ -16,7 +16,6 @@ import * as styles from "./LoginForm.module.scss";
 
 const LoginForm = () => {
     const dispatch = useAppDispatch();
-    const [isFormValid, setIsFormValid] = useState<boolean>(false);
     const navigate = useNavigate();
 
     const {
@@ -35,29 +34,11 @@ const LoginForm = () => {
     }
 
     const onLogin = async () => {
-        if (isFormValid) {
-            const response = await dispatch(loginByUsername())
-            if (response.meta.requestStatus === 'fulfilled') {
-                navigate(routePath.main)
-            }
+        const response = await dispatch(loginByUsername())
+        if (response.meta.requestStatus === 'fulfilled') {
+            navigate(routePath.main)
         }
     }
-
-    const isFormFilled = () => {
-        // проверка на загрузку
-        if (isLoading) {
-            return !isLoading
-        }
-        // проверка на заполнение формы
-        return (
-            username.trim().length > 0 &&
-            password.trim().length > 0
-        );
-    };
-
-    useEffect(() => {
-        setIsFormValid(isFormFilled());
-    }, [username, password, isLoading]);
 
     if (isLoading) {
         return (
@@ -91,7 +72,7 @@ const LoginForm = () => {
                 disabled={isLoading}
                 hasError={validateErrors?.includes(ValidateLoginFormError.INCORRECT_PASSWORD)}
             />
-            <AppButton className={styles.button} onClick={onLogin} disabled={!isFormValid}>
+            <AppButton className={styles.button} onClick={onLogin}>
                 Login
             </AppButton>
         </div>

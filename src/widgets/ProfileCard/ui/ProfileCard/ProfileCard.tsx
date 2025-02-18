@@ -1,19 +1,19 @@
 import {AppPageLoader} from "shared/ui/AppPageLoader/AppPageLoader";
-import {Profile, ValidateProfileError} from "entities/Profile";
+import {Profile, serverError} from "entities/Profile";
 import AvatarPlaceholder from "shared/assets/images/AvatarPlaceholder.png"
 import * as styles from "./ProfileCard.module.scss";
 
 export interface ProfileCardProps {
     profileData?: Profile,
     isLoading: boolean,
-    validateErrors?: ValidateProfileError[]
+    serverError?: serverError[]
 }
 
 const ProfileCard = (props: ProfileCardProps) => {
     const {
         profileData,
         isLoading,
-        validateErrors
+        serverError
     } = props
 
     let content
@@ -24,10 +24,10 @@ const ProfileCard = (props: ProfileCardProps) => {
                 <AppPageLoader/>
             </div>
         )
-    } else if (validateErrors) {
+    } else if (serverError) {
         content = (
             <div className={styles.ProfileCard}>
-                {validateErrors[0]}
+                {serverError[0]}
             </div>
         )
     } else {
