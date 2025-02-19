@@ -1,14 +1,15 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {ThunkConfig} from "app/providers/StoreProvider";
 import {Profile, profileActions} from "entities/Profile";
-import {ValidateProfileError} from "../types/EditProfileState";
 import {getEditProfileForm} from "../selectors/getEditProfileForm";
 import {validateProfileForm} from "./validateProfileForm";
+import {editProfileActions} from "../slice/editProfileSlice";
+import {handleThunkError} from "shared/api/handleThunkError";
 
 export const updateProfileDataById = createAsyncThunk<
     Profile,
     void,
-    ThunkConfig<ValidateProfileError[]>
+    ThunkConfig<string[]>
 >(
     'profile/updateProfileDataById',
     async (_, thunkApi) => {
@@ -18,7 +19,8 @@ export const updateProfileDataById = createAsyncThunk<
         const errors = validateProfileForm(form)
 
         if (errors.length) {
-            return rejectWithValue(errors);
+            dispatch(editProfileActions.setValidateErrors(errors))
+            return rejectWithValue(['Validation error']);
         }
 
         try {
@@ -32,7 +34,7 @@ export const updateProfileDataById = createAsyncThunk<
 
             return response.data;
         } catch (e) {
-            return rejectWithValue([ValidateProfileError.SERVER_ERROR]);
+            return rejectWithValue(handleThunkError(e));
         }
     },
 );

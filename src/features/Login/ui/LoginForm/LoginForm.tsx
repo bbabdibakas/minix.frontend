@@ -1,8 +1,8 @@
 import {useAppDispatch} from "shared/lib/useAppDispatch/useAppDispatch";
-import {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
 import {getLoginForm} from "../../model/selectors/getLoginForm";
 import {getLoginValidateErrors} from "../../model/selectors/getLoginValidateErrors";
+import {getLoginServerErrors} from "../../model/selectors/getLoginServerErrors";
 import {getLoginIsLoading} from "../../model/selectors/getLoginIsLoading";
 import {loginActions} from "../../model/slice/loginSlice";
 import {ValidateLoginFormError} from "../../model/types/LoginState";
@@ -23,6 +23,7 @@ const LoginForm = () => {
         password
     } = useSelector(getLoginForm)
     const validateErrors = useSelector(getLoginValidateErrors)
+    const serverErrors = useSelector(getLoginServerErrors)
     const isLoading = useSelector(getLoginIsLoading)
 
     const onChangeUsername = (value: string) => {
@@ -53,6 +54,11 @@ const LoginForm = () => {
             <div className={styles.title}>
                 Welcome back
             </div>
+            {serverErrors?.map((error, index) => (
+                <div className={styles.error} key={index}>
+                    {error}
+                </div>))
+            }
             {validateErrors?.map((error, index) => (
                 <div className={styles.error} key={index}>
                     {error}

@@ -3,9 +3,9 @@ import {useSelector} from "react-redux";
 import {getRegisterForm} from "../../model/selectors/getRegisterForm";
 import {registerActions} from "../../model/slice/registerSlice";
 import {AppButton} from "shared/ui/AppButton/AppButton";
-import {useEffect, useState} from "react";
 import {register} from "../../model/services/register";
 import {getRegisterValidateErrors} from "../../model/selectors/getRegisterValidateErrors";
+import {getRegisterServerErrors} from "../../model/selectors/getRegisterServerErrors";
 import {ValidateRegisterFormError} from "../../model/types/RegisterState";
 import {getRegisterIsLoading} from "../../model/selectors/getRegisterIsLoading";
 import {useAppDispatch} from "shared/lib/useAppDispatch/useAppDispatch";
@@ -24,6 +24,7 @@ const RegisterForm = () => {
         password
     } = useSelector(getRegisterForm)
     const validateErrors = useSelector(getRegisterValidateErrors)
+    const serverErrors = useSelector(getRegisterServerErrors)
     const isLoading = useSelector(getRegisterIsLoading)
 
     const onChangeName = (value: string) => {
@@ -58,6 +59,11 @@ const RegisterForm = () => {
             <div className={styles.title}>
                 Please enter your details
             </div>
+            {serverErrors?.map((error, index) => (
+                <div className={styles.error} key={index}>
+                    {error}
+                </div>))
+            }
             {validateErrors?.map((error, index) => (
                 <div className={styles.error} key={index}>
                     {error}

@@ -4,6 +4,7 @@ import * as styles from './AppButton.module.scss'
 export enum AppButtonTheme {
     PRIMARY = 'primary',
     TEXT = 'text',
+    OUTLINED = 'outlined'
 }
 
 interface AppButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {

@@ -3,7 +3,7 @@ import {useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 import {fetchProfileDataById, getProfileData, getProfileIsLoading, getProfileServerError} from "entities/Profile";
 import {ProfileCard} from "widgets/ProfileCard";
-import {AppButton} from "shared/ui/AppButton/AppButton";
+import {AppButton, AppButtonTheme} from "shared/ui/AppButton/AppButton";
 import {EditProfileModal} from "features/EditProfile";
 
 const ProfilePage = () => {
@@ -36,7 +36,7 @@ const ProfilePage = () => {
                 isLoading={isLoading}
                 serverError={serverError}
             />
-            <AppButton onClick={onModalOpen}>
+            <AppButton onClick={onModalOpen} theme={AppButtonTheme.OUTLINED}>
                 Edit profile
             </AppButton>
             {isModalOpen && <EditProfileModal isOpen={isModalOpen} onClose={onModalClose}/>}

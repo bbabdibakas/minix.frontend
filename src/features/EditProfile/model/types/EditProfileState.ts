@@ -5,11 +5,11 @@ export enum ValidateProfileError {
     INCORRECT_NAME = 'Name must be more than 3 characters.',
     INCORRECT_USERNAME = 'Username must be more than 3 characters.',
     INCORRECT_BIO = 'Bio must be less than 32 characters.',
-    SERVER_ERROR = 'Unknown server error.',
 }
 
 export interface EditProfileState {
     profileForm?: Profile
     isLoading: boolean
     validateErrors?: ValidateProfileError[]
+    serverErrors?: string[]
 }

@@ -7,6 +7,7 @@ import {useEffect} from "react";
 import {getEditProfileForm} from "../../model/selectors/getEditProfileForm";
 import {getEditProfileIsLoading} from "../../model/selectors/getEditProfileIsLoading";
 import {getEditProfileValidateErrors} from "../../model/selectors/getEditProfileValidateErrors";
+import {getEditProfileServerErrors} from "../../model/selectors/getEditProfileServerErrors";
 import {ValidateProfileError} from "../../model/types/EditProfileState";
 import {editProfileActions} from "../../model/slice/editProfileSlice";
 import {updateProfileDataById} from "../../model/services/updateProfileDataById";
@@ -25,6 +26,7 @@ const EditProfileForm = ({onSuccess}: EditProfileFormProps) => {
     const profileForm = useSelector(getEditProfileForm)
     const isLoading = useSelector(getEditProfileIsLoading)
     const validateErrors = useSelector(getEditProfileValidateErrors)
+    const serverErrors = useSelector(getEditProfileServerErrors)
 
     const onChangeName = (value: string) => {
         dispatch(editProfileActions.updateProfileForm({name: value}))
@@ -64,6 +66,11 @@ const EditProfileForm = ({onSuccess}: EditProfileFormProps) => {
             <div className={styles.title}>
                 Edit profile
             </div>
+            {serverErrors?.map((error, index) => (
+                <div className={styles.error} key={index}>
+                    {error}
+                </div>))
+            }
             {validateErrors?.map((error, index) => (
                 <div className={styles.error} key={index}>
                     {error}

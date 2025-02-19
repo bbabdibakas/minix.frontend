@@ -10,14 +10,13 @@ export const validateProfileForm = (profile?: Profile) => {
         name, username, bio,
     } = profile;
 
-
     const errors: ValidateProfileError[] = [];
 
-    if (name && name.trim().length <= 3) {
+    if (!name || name.trim().length <= 3) {
         errors.push(ValidateProfileError.INCORRECT_NAME);
     }
 
-    if (username && username.trim().length <= 3) {
+    if (!username || username.trim().length <= 3) {
         errors.push(ValidateProfileError.INCORRECT_USERNAME);
     }
 

@@ -1,15 +1,16 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {ThunkConfig} from "app/providers/StoreProvider";
-import {ValidateLoginFormError} from "../types/LoginState";
 import {getLoginForm} from "../selectors/getLoginForm";
 import {validateForm} from "./validateForm";
 import axios from "axios";
 import {UserData, userActions} from "entities/User";
+import {handleThunkError} from "shared/api/handleThunkError";
+import {loginActions} from "../slice/loginSlice";
 
 export const loginByUsername = createAsyncThunk<
     UserData,
     void,
-    ThunkConfig<ValidateLoginFormError[]>
+    ThunkConfig<string[]>
 >(
     'auth/loginByUsername',
     async (_, thunkApi) => {
@@ -19,7 +20,8 @@ export const loginByUsername = createAsyncThunk<
         const errors = validateForm(form)
 
         if (errors.length) {
-            return rejectWithValue(errors);
+            dispatch(loginActions.setValidateErrors(errors))
+            return rejectWithValue(['Validation error']);
         }
 
         try {
@@ -33,7 +35,7 @@ export const loginByUsername = createAsyncThunk<
 
             return response.data;
         } catch (e) {
-            return rejectWithValue([ValidateLoginFormError.SERVER_ERROR]);
+            return rejectWithValue(handleThunkError(e));
         }
     },
 );
