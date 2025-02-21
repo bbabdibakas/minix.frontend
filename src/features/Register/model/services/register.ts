@@ -1,15 +1,15 @@
-import {createAsyncThunk} from "@reduxjs/toolkit";
-import {ThunkConfig} from "app/providers/StoreProvider";
-import {getRegisterForm} from "features/Register/model/selectors/getRegisterForm";
-import {validateForm} from "features/Register/model/services/validateForm";
-import axios from "axios";
-import {UserData, userActions} from "entities/User";
-import {handleThunkError} from "shared/api/handleThunkError";
-import {registerActions} from "../slice/registerSlice";
+import {createAsyncThunk} from '@reduxjs/toolkit';
+import {ThunkConfig} from 'app/providers/StoreProvider';
+import {getRegisterForm} from 'features/Register/model/selectors/getRegisterForm';
+import {validateForm} from 'features/Register/model/services/validateForm';
+import axios from 'axios';
+import {UserData, userActions} from 'entities/User';
+import {handleThunkError} from 'shared/api/handleThunkError';
+import {registerActions} from '../slice/registerSlice';
 
 export const register = createAsyncThunk<
     UserData,
-    void,
+    undefined,
     ThunkConfig<string[]>
 >(
     'auth/register',
@@ -26,11 +26,6 @@ export const register = createAsyncThunk<
 
         try {
             const response = await axios.post<UserData>('http://localhost:8000/api/registration', form)
-
-            if (!response.data) {
-                throw new Error();
-            }
-
             dispatch(userActions.setUserData(response.data));
 
             return response.data;

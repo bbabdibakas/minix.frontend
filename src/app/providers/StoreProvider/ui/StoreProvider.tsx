@@ -1,7 +1,7 @@
-import {ReactNode} from "react";
-import {RootState} from "../lib/RootState";
-import {createReduxStore} from "../lib/store";
-import {Provider} from "react-redux";
+import {ReactNode} from 'react';
+import {RootState} from '../lib/RootState';
+import {createReduxStore} from '../lib/store';
+import {Provider} from 'react-redux';
 
 interface StoreProviderProps {
     children?: ReactNode;

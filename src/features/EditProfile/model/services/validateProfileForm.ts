@@ -1,5 +1,5 @@
-import {Profile} from "entities/Profile";
-import {ValidateProfileError} from "../types/EditProfileState";
+import {Profile} from 'entities/Profile';
+import {ValidateProfileError} from '../types/EditProfileState';
 
 export const validateProfileForm = (profile?: Profile) => {
     if (!profile) {

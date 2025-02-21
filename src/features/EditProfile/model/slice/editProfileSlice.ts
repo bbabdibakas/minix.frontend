@@ -1,7 +1,7 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {EditProfileState, ValidateProfileError} from "../types/EditProfileState";
-import {Profile} from "entities/Profile";
-import {updateProfileDataById} from "../services/updateProfileDataById";
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {EditProfileState, ValidateProfileError} from '../types/EditProfileState';
+import {Profile} from 'entities/Profile';
+import {updateProfileDataById} from '../services/updateProfileDataById';
 
 const initialState: EditProfileState = {
     isLoading: false

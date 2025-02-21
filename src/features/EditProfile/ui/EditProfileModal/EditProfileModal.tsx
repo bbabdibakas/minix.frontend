@@ -1,5 +1,5 @@
-import {AppModal} from "shared/ui/AppModal/AppModal";
-import EditProfileForm from "../EditProfileForm/EditProfileForm";
+import {AppModal} from 'shared/ui/AppModal/AppModal';
+import EditProfileForm from '../EditProfileForm/EditProfileForm';
 
 interface EditProfileModalProps {
     isOpen: boolean;

@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
     "build:dev": "webpack --env mode=development",
     "build:prod": "webpack --env mode=production",
     "start": "webpack serve --env port=3000"
@@ -13,6 +15,7 @@
   "type": "commonjs",
   "description": "",
   "devDependencies": {
+    "@eslint/js": "^9.20.0",
     "@svgr/webpack": "^8.1.0",
     "@types/node": "^22.10.7",
     "@types/react": "^19.0.7",
@@ -20,7 +23,10 @@
     "@types/react-router": "^5.1.20",
     "@types/webpack": "^5.28.5",
     "css-loader": "^7.1.2",
+    "eslint": "^9.20.1",
+    "eslint-plugin-react": "^7.37.4",
     "file-loader": "^6.2.0",
+    "globals": "^16.0.0",
     "html-webpack-plugin": "^5.6.3",
     "mini-css-extract-plugin": "^2.9.2",
     "sass": "^1.83.1",
@@ -29,6 +35,7 @@
     "ts-loader": "^9.5.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.3",
+    "typescript-eslint": "^8.24.1",
     "webpack": "^5.97.1",
     "webpack-cli": "^6.0.1",
     "webpack-dev-server": "^5.2.0"

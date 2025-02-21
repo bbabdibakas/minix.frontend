@@ -10,6 +10,6 @@ export const AppLoader = (props: AppLoaderProps) => {
     } = props
 
     return (
-        <div className={`${styles.AppLoader} ${className}`}/>
+        <div className={`${styles.AppLoader} ${className || ''}`}/>
     )
 }

@@ -23,7 +23,7 @@ export const AppButton = (props: AppButtonProps) => {
     return (
         <button
             type="button"
-            className={`${styles.AppButton} ${styles[theme]} ${className}`}
+            className={`${styles.AppButton} ${styles[theme]} ${className || ''}`}
             {...otherProps}
         >
             {children}

@@ -1,4 +1,4 @@
-import ProfileCard from "./ui/ProfileCard/ProfileCard";
+import ProfileCard from './ui/ProfileCard/ProfileCard';
 
 export {
     ProfileCard

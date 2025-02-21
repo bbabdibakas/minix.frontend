@@ -1,17 +1,17 @@
-import {AppInput} from "shared/ui/AppInput/AppInput";
-import {useSelector} from "react-redux";
-import {getRegisterForm} from "../../model/selectors/getRegisterForm";
-import {registerActions} from "../../model/slice/registerSlice";
-import {AppButton} from "shared/ui/AppButton/AppButton";
-import {register} from "../../model/services/register";
-import {getRegisterValidateErrors} from "../../model/selectors/getRegisterValidateErrors";
-import {getRegisterServerErrors} from "../../model/selectors/getRegisterServerErrors";
-import {ValidateRegisterFormError} from "../../model/types/RegisterState";
-import {getRegisterIsLoading} from "../../model/selectors/getRegisterIsLoading";
-import {useAppDispatch} from "shared/lib/useAppDispatch/useAppDispatch";
-import {AppPageLoader} from "shared/ui/AppPageLoader/AppPageLoader";
-import {routePath} from "app/providers/AppRouter";
-import {useNavigate} from "react-router";
+import {AppInput} from 'shared/ui/AppInput/AppInput';
+import {useSelector} from 'react-redux';
+import {getRegisterForm} from '../../model/selectors/getRegisterForm';
+import {registerActions} from '../../model/slice/registerSlice';
+import {AppButton} from 'shared/ui/AppButton/AppButton';
+import {register} from '../../model/services/register';
+import {getRegisterValidateErrors} from '../../model/selectors/getRegisterValidateErrors';
+import {getRegisterServerErrors} from '../../model/selectors/getRegisterServerErrors';
+import {ValidateRegisterFormError} from '../../model/types/RegisterState';
+import {getRegisterIsLoading} from '../../model/selectors/getRegisterIsLoading';
+import {useAppDispatch} from 'shared/lib/useAppDispatch/useAppDispatch';
+import {AppPageLoader} from 'shared/ui/AppPageLoader/AppPageLoader';
+import {routePath} from 'app/providers/AppRouter';
+import {useNavigate} from 'react-router';
 import * as styles from './RegisterForm.module.scss'
 
 const RegisterForm = () => {
@@ -42,7 +42,7 @@ const RegisterForm = () => {
     const onRegister = async () => {
         const response = await dispatch(register())
         if (response.meta.requestStatus === 'fulfilled') {
-            navigate(routePath.main)
+            await navigate(routePath.main)
         }
     }
 
@@ -90,7 +90,7 @@ const RegisterForm = () => {
                 disabled={isLoading}
                 hasError={validateErrors?.includes(ValidateRegisterFormError.INCORRECT_PASSWORD)}
             />
-            <AppButton className={styles.button} onClick={onRegister}>
+            <AppButton className={styles.button} onClick={() => void onRegister()}>
                 Register
             </AppButton>
         </div>

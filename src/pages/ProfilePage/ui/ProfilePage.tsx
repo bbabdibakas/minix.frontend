@@ -1,10 +1,10 @@
-import {useAppDispatch} from "shared/lib/useAppDispatch/useAppDispatch";
-import {useSelector} from "react-redux";
-import {useEffect, useState} from "react";
-import {fetchProfileDataById, getProfileData, getProfileIsLoading, getProfileServerError} from "entities/Profile";
-import {ProfileCard} from "widgets/ProfileCard";
-import {AppButton, AppButtonTheme} from "shared/ui/AppButton/AppButton";
-import {EditProfileModal} from "features/EditProfile";
+import {useAppDispatch} from 'shared/lib/useAppDispatch/useAppDispatch';
+import {useSelector} from 'react-redux';
+import {useEffect, useState} from 'react';
+import {fetchProfileDataById, getProfileData, getProfileIsLoading, getProfileServerError} from 'entities/Profile';
+import {ProfileCard} from 'widgets/ProfileCard';
+import {AppButton, AppButtonTheme} from 'shared/ui/AppButton/AppButton';
+import {EditProfileModal} from 'features/EditProfile';
 
 const ProfilePage = () => {
     const dispatch = useAppDispatch();
@@ -26,7 +26,7 @@ const ProfilePage = () => {
     }
 
     useEffect(() => {
-        dispatch(fetchProfileDataById(profileId))
+        void dispatch(fetchProfileDataById(profileId))
     }, [dispatch, profileId])
 
     return (

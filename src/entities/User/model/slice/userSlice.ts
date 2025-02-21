@@ -1,6 +1,6 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {UserData, UserState} from "../types/UserState";
-import {USER_LOCALSTORAGE_KEY} from "shared/const/localstorage";
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {UserData, UserState} from '../types/UserState';
+import {USER_LOCALSTORAGE_KEY} from 'shared/const/localstorage';
 
 const initialState: UserState = {
     isUserInit: false,
@@ -17,6 +17,8 @@ export const userSlice = createSlice({
         initUserData: (state) => {
             const userData = localStorage.getItem(USER_LOCALSTORAGE_KEY)
             if (userData) {
+                // I'm sure that JSON.parse(userData) returns UserData type and I don't want to create validation service for that :)
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                 state.userData = JSON.parse(userData);
             }
             state.isUserInit = true;

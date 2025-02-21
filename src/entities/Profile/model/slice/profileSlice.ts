@@ -1,6 +1,6 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {Profile, ProfileState} from '../types/ProfileState';
-import {fetchProfileDataById} from "../services/fetchProfileDataById";
+import {fetchProfileDataById} from '../services/fetchProfileDataById';
 
 const initialState: ProfileState = {
     isLoading: false

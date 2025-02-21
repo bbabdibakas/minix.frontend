@@ -1,5 +1,5 @@
-import webpack from "webpack";
-import {BuildOptions} from "./types/BuildOptions";
+import webpack from 'webpack';
+import {BuildOptions} from './types/BuildOptions';
 
 export const buildResolvers = ({paths}: BuildOptions): webpack.ResolveOptions => {
     return {

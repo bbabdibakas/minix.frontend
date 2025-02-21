@@ -1,14 +1,14 @@
-import {createAsyncThunk} from "@reduxjs/toolkit";
-import {ThunkConfig} from "app/providers/StoreProvider";
-import {Profile, profileActions} from "entities/Profile";
-import {getEditProfileForm} from "../selectors/getEditProfileForm";
-import {validateProfileForm} from "./validateProfileForm";
-import {editProfileActions} from "../slice/editProfileSlice";
-import {handleThunkError} from "shared/api/handleThunkError";
+import {createAsyncThunk} from '@reduxjs/toolkit';
+import {ThunkConfig} from 'app/providers/StoreProvider';
+import {Profile, profileActions} from 'entities/Profile';
+import {getEditProfileForm} from '../selectors/getEditProfileForm';
+import {validateProfileForm} from './validateProfileForm';
+import {editProfileActions} from '../slice/editProfileSlice';
+import {handleThunkError} from 'shared/api/handleThunkError';
 
 export const updateProfileDataById = createAsyncThunk<
     Profile,
-    void,
+    undefined,
     ThunkConfig<string[]>
 >(
     'profile/updateProfileDataById',
@@ -23,13 +23,9 @@ export const updateProfileDataById = createAsyncThunk<
             return rejectWithValue(['Validation error']);
         }
 
+        // TODO change type for ids, they must be string not number
         try {
-            const response = await extra.api.put<Profile>(`/profiles/${form?.id}`, form)
-
-            if (!response.data) {
-                throw new Error();
-            }
-
+            const response = await extra.api.put<Profile>(`/profiles/${String(form?.id)}`, form)
             dispatch(profileActions.setProfileData(response.data));
 
             return response.data;

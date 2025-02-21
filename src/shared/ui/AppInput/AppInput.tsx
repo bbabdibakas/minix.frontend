@@ -1,5 +1,5 @@
-import {ChangeEvent, InputHTMLAttributes} from "react";
-import * as styles from "./AppInput.module.scss";
+import {ChangeEvent, InputHTMLAttributes} from 'react';
+import * as styles from './AppInput.module.scss';
 
 interface AppInputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange'> {
     className?: string
@@ -27,7 +27,7 @@ export const AppInput = (props: AppInputProps) => {
     return (
         <div className={styles.wrapper}>
             <input
-                className={`${styles.AppInput} ${hasError ? styles.hasError : undefined} ${className}`}
+                className={`${styles.AppInput} ${hasError ? styles.hasError : ''} ${className || ''}`}
                 value={value}
                 onChange={onChangeValue}
                 placeholder={placeholder}

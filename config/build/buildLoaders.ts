@@ -1,5 +1,5 @@
-import {BuildOptions} from "./types/BuildOptions";
-import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import {BuildOptions} from './types/BuildOptions';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
 export const buildLoaders = ({isDev}: BuildOptions) => {
     const fileLoader = {
@@ -25,9 +25,9 @@ export const buildLoaders = ({isDev}: BuildOptions) => {
     const cssLoader = {
         test: /\.s[ac]ss$/i,
         use: [
-            isDev ? "style-loader" : MiniCssExtractPlugin.loader,
+            isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
             {
-                loader: "css-loader",
+                loader: 'css-loader',
                 options: {
                     modules: {
                         auto: (resPath: string) => Boolean(resPath.includes('.module.')),
@@ -35,7 +35,7 @@ export const buildLoaders = ({isDev}: BuildOptions) => {
                     },
                 },
             },
-            "sass-loader",
+            'sass-loader',
         ],
     }
 

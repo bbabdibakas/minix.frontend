@@ -1,5 +1,5 @@
-import {AppModal} from "shared/ui/AppModal/AppModal";
-import LoginForm from "../LoginForm/LoginForm";
+import {AppModal} from 'shared/ui/AppModal/AppModal';
+import LoginForm from '../LoginForm/LoginForm';
 
 interface LoginModalProps {
     isOpen: boolean;

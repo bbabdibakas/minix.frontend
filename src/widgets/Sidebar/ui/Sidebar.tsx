@@ -1,14 +1,14 @@
-import {AppButton} from "shared/ui/AppButton/AppButton";
-import {userActions} from "entities/User";
-import {useAppDispatch} from "shared/lib/useAppDispatch/useAppDispatch";
+import {AppButton} from 'shared/ui/AppButton/AppButton';
+import {userActions} from 'entities/User';
+import {useAppDispatch} from 'shared/lib/useAppDispatch/useAppDispatch';
 import * as styles from './Sidebar.module.scss'
-import AppLink from "shared/ui/AppLink/AppLink";
-import MainPageIcon from "shared/assets/icons/MainPageIcon.svg"
-import ProfilePageIcon from "shared/assets/icons/ProfilePageIcon.svg"
-import MainPageActiveIcon from "shared/assets/icons/MainPageActiveIcon.svg"
-import ProfilePageActiveIcon from "shared/assets/icons/ProfilePageActiveIcon.svg"
-import {useLocation} from "react-router";
-import {routePath} from "app/providers/AppRouter";
+import AppLink from 'shared/ui/AppLink/AppLink';
+import MainPageIcon from 'shared/assets/icons/MainPageIcon.svg'
+import ProfilePageIcon from 'shared/assets/icons/ProfilePageIcon.svg'
+import MainPageActiveIcon from 'shared/assets/icons/MainPageActiveIcon.svg'
+import ProfilePageActiveIcon from 'shared/assets/icons/ProfilePageActiveIcon.svg'
+import {useLocation} from 'react-router';
+import {routePath} from 'app/providers/AppRouter';
 
 const Sidebar = () => {
     const dispatch = useAppDispatch()

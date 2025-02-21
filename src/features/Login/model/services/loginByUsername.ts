@@ -1,15 +1,15 @@
-import {createAsyncThunk} from "@reduxjs/toolkit";
-import {ThunkConfig} from "app/providers/StoreProvider";
-import {getLoginForm} from "../selectors/getLoginForm";
-import {validateForm} from "./validateForm";
-import axios from "axios";
-import {UserData, userActions} from "entities/User";
-import {handleThunkError} from "shared/api/handleThunkError";
-import {loginActions} from "../slice/loginSlice";
+import {createAsyncThunk} from '@reduxjs/toolkit';
+import {ThunkConfig} from 'app/providers/StoreProvider';
+import {getLoginForm} from '../selectors/getLoginForm';
+import {validateForm} from './validateForm';
+import axios from 'axios';
+import {UserData, userActions} from 'entities/User';
+import {handleThunkError} from 'shared/api/handleThunkError';
+import {loginActions} from '../slice/loginSlice';
 
 export const loginByUsername = createAsyncThunk<
     UserData,
-    void,
+    undefined,
     ThunkConfig<string[]>
 >(
     'auth/loginByUsername',
@@ -26,10 +26,6 @@ export const loginByUsername = createAsyncThunk<
 
         try {
             const response = await axios.post<UserData>('http://localhost:8000/api/loginByUsername', form)
-
-            if (!response.data) {
-                throw new Error();
-            }
 
             dispatch(userActions.setUserData(response.data));
 

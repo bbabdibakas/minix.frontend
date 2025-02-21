@@ -1,6 +1,6 @@
-import {lazy} from "react";
+import {lazy} from 'react';
 
 export const MainPageAsync = lazy(()=>new Promise(resolve => {
-    //@ts-ignore для имитации медленной загрузки страницы
-    setTimeout(()=>resolve(import('./MainPage')), 1000)
+    //@ts-expect-error-ignore для имитации медленной загрузки страницы
+    setTimeout(()=>{ resolve(import('./MainPage')); }, 1000)
 }));

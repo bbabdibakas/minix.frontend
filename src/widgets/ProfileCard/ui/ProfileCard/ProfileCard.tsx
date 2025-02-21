@@ -1,12 +1,12 @@
-import {AppPageLoader} from "shared/ui/AppPageLoader/AppPageLoader";
-import {Profile, serverError} from "entities/Profile";
-import AvatarPlaceholder from "shared/assets/images/AvatarPlaceholder.png"
-import * as styles from "./ProfileCard.module.scss";
+import {AppPageLoader} from 'shared/ui/AppPageLoader/AppPageLoader';
+import {Profile} from 'entities/Profile';
+import AvatarPlaceholder from 'shared/assets/images/AvatarPlaceholder.png'
+import * as styles from './ProfileCard.module.scss';
 
 export interface ProfileCardProps {
     profileData?: Profile,
     isLoading: boolean,
-    serverError?: serverError[]
+    serverError?: string[]
 }
 
 const ProfileCard = (props: ProfileCardProps) => {

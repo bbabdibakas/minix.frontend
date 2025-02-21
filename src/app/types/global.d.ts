@@ -7,9 +7,21 @@ declare module '*.module.scss' {
     export = classNames;
 }
 
-declare module '*.png';
-declare module '*.jpg';
-declare module '*.jpeg';
+declare module '*.png' {
+    const value: string;
+    export default value;
+}
+
+declare module '*.jpg' {
+    const value: string;
+    export default value;
+}
+
+declare module '*.jpeg' {
+    const value: string;
+    export default value;
+}
+
 declare module '*.svg' {
     import React from 'react';
     const SVG: React.FC<React.SVGProps<SVGSVGElement>>;

@@ -1,8 +1,8 @@
 import {createRoot} from 'react-dom/client';
-import App from "app/App";
-import "app/styles/index.scss";
-import {StoreProvider} from "app/providers/StoreProvider";
-import {BrowserRouter} from "react-router";
+import App from 'app/App';
+import 'app/styles/index.scss';
+import {StoreProvider} from 'app/providers/StoreProvider';
+import {BrowserRouter} from 'react-router';
 
 const rootElement = document.getElementById('root');
 

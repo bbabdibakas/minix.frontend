@@ -1,11 +1,12 @@
-import {createAsyncThunk} from "@reduxjs/toolkit";
-import {ThunkConfig} from "app/providers/StoreProvider";
-import {Profile, serverError} from "../types/ProfileState";
+import {createAsyncThunk} from '@reduxjs/toolkit';
+import {ThunkConfig} from 'app/providers/StoreProvider';
+import {Profile} from '../types/ProfileState';
+import {handleThunkError} from 'shared/api/handleThunkError';
 
 export const fetchProfileDataById = createAsyncThunk<
     Profile,
     string,
-    ThunkConfig<serverError[]>
+    ThunkConfig<string[]>
 >(
     'profile/fetchProfileDataById',
     async (profileId, thunkApi) => {
@@ -13,14 +14,9 @@ export const fetchProfileDataById = createAsyncThunk<
 
         try {
             const response = await extra.api.get<Profile>(`/profiles/${profileId}`)
-
-            if (!response.data) {
-                throw new Error();
-            }
-
             return response.data;
         } catch (e) {
-            return rejectWithValue([serverError.SERVER_ERROR]);
+            return rejectWithValue(handleThunkError(e));
         }
     },
 );

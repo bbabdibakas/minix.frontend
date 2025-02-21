@@ -1,18 +1,18 @@
-import {AppInput} from "shared/ui/AppInput/AppInput";
-import {useAppDispatch} from "shared/lib/useAppDispatch/useAppDispatch";
-import {useSelector} from "react-redux";
-import {getProfileData} from "entities/Profile";
-import {AppButton} from "shared/ui/AppButton/AppButton";
-import {useEffect} from "react";
-import {getEditProfileForm} from "../../model/selectors/getEditProfileForm";
-import {getEditProfileIsLoading} from "../../model/selectors/getEditProfileIsLoading";
-import {getEditProfileValidateErrors} from "../../model/selectors/getEditProfileValidateErrors";
-import {getEditProfileServerErrors} from "../../model/selectors/getEditProfileServerErrors";
-import {ValidateProfileError} from "../../model/types/EditProfileState";
-import {editProfileActions} from "../../model/slice/editProfileSlice";
-import {updateProfileDataById} from "../../model/services/updateProfileDataById";
-import {AppPageLoader} from "shared/ui/AppPageLoader/AppPageLoader";
-import * as styles from "./EditProfileForm.module.scss";
+import {AppInput} from 'shared/ui/AppInput/AppInput';
+import {useAppDispatch} from 'shared/lib/useAppDispatch/useAppDispatch';
+import {useSelector} from 'react-redux';
+import {getProfileData} from 'entities/Profile';
+import {AppButton} from 'shared/ui/AppButton/AppButton';
+import {useEffect} from 'react';
+import {getEditProfileForm} from '../../model/selectors/getEditProfileForm';
+import {getEditProfileIsLoading} from '../../model/selectors/getEditProfileIsLoading';
+import {getEditProfileValidateErrors} from '../../model/selectors/getEditProfileValidateErrors';
+import {getEditProfileServerErrors} from '../../model/selectors/getEditProfileServerErrors';
+import {ValidateProfileError} from '../../model/types/EditProfileState';
+import {editProfileActions} from '../../model/slice/editProfileSlice';
+import {updateProfileDataById} from '../../model/services/updateProfileDataById';
+import {AppPageLoader} from 'shared/ui/AppPageLoader/AppPageLoader';
+import * as styles from './EditProfileForm.module.scss';
 
 interface EditProfileFormProps {
     onSuccess: () => void;
@@ -78,28 +78,28 @@ const EditProfileForm = ({onSuccess}: EditProfileFormProps) => {
             }
             <AppInput
                 value={profileForm?.name ?? ''}
-                placeholder={"Name"}
+                placeholder={'Name'}
                 onChange={onChangeName}
                 disabled={isLoading}
                 hasError={validateErrors?.includes(ValidateProfileError.INCORRECT_NAME)}
             />
             <AppInput
                 value={profileForm?.username ?? ''}
-                placeholder={"Username"}
+                placeholder={'Username'}
                 onChange={onChangeUsername}
                 disabled={isLoading}
                 hasError={validateErrors?.includes(ValidateProfileError.INCORRECT_USERNAME)}
             />
             <AppInput
                 value={profileForm?.bio ?? ''}
-                placeholder={"Bio"}
+                placeholder={'Bio'}
                 onChange={onChangeBio}
                 disabled={isLoading}
                 hasError={validateErrors?.includes(ValidateProfileError.INCORRECT_BIO)}
             />
             <AppButton
                 className={styles.button}
-                onClick={onUpdateProfile}
+                onClick={()=> void onUpdateProfile()}
             >
                 submit
             </AppButton>

@@ -24,7 +24,7 @@ export const AppModal = (props: AppModalProps) => {
 
     return (
         <AppPortal>
-            <div className={`${styles.AppModal} ${isOpen ? styles.opened : undefined} ${className}`}>
+            <div className={`${styles.AppModal} ${isOpen ? styles.opened : ''} ${className || ''}`}>
                 <div className={styles.overlay}>
                     <div className={styles.content}>
                         <div className={styles.header}>
