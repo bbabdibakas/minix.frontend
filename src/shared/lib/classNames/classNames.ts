@@ -1,7 +1,7 @@
 export const classNames = (
     main: string,
     mods: Record<string, boolean | undefined>,
-    additional: Array<string | undefined>
+    additional: Array<string | undefined> = []
 ): string  => {
     return [
         main,

@@ -2,6 +2,7 @@ import globals from 'globals';
 import pluginJs from '@eslint/js';
 import tseslint from 'typescript-eslint';
 import pluginReact from 'eslint-plugin-react';
+import pluginJest from 'eslint-plugin-jest';
 
 export default [
     {files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}']},
@@ -31,5 +32,14 @@ export default [
             'no-console': 'warn',
             'quotes': ['error', 'single'],
         },
+    },
+    {
+        files: ['**/*(*.)@(spec|test).[tj]s?(x)'],
+        plugins: {
+            jest: pluginJest,
+        },
+        rules: {
+            ...pluginJest.configs.recommended.rules,
+        }
     }
 ];
