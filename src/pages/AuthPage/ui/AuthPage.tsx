@@ -17,7 +17,7 @@ const AuthPage = () => {
 
     return (
         <div className="wrapper">
-            <div className="authPage">
+            <div className="AuthPage">
                 <RegisterForm/>
                 <div className={styles.form}>
                     <div className={styles.title}>

@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint",
-    "lint:fix": "eslint --fix",
+    "lint:ts": "eslint",
+    "lint:ts:fix": "eslint --fix",
+    "lint:styles": "stylelint '**/*.{css,scss,sass}'",
+    "lint:styles:fix": "stylelint '**/*.{css,scss,sass}' --fix",
     "build:dev": "webpack --env mode=development",
     "build:prod": "webpack --env mode=production",
     "start": "webpack serve --env port=3000"
@@ -32,6 +34,8 @@
     "sass": "^1.83.1",
     "sass-loader": "^16.0.4",
     "style-loader": "^4.0.0",
+    "stylelint": "^16.14.1",
+    "stylelint-config-standard-scss": "^14.0.0",
     "ts-loader": "^9.5.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.3",

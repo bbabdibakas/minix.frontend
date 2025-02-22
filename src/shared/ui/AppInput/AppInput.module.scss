@@ -2,6 +2,16 @@
   position: relative;
 }
 
+.placeholder {
+  pointer-events: none;
+  left: 9px;
+  top: 9px;
+  position: absolute;
+  font: inherit;
+  color: var(--border-color);
+  transition: all 0.2s ease;
+}
+
 .AppInput {
   width: 100%;
   box-sizing: border-box;
@@ -62,14 +72,4 @@
       }
     }
   }
-}
-
-.placeholder {
-  pointer-events: none;
-  left: 9px;
-  top: 9px;
-  position: absolute;
-  font: inherit;
-  color: var(--border-color);
-  transition: all 0.2s ease;
 }
