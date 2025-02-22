@@ -5,6 +5,7 @@ import {profileReducer} from 'entities/Profile';
 import {editProfileReducer} from 'features/EditProfile';
 import {registerReducer} from 'features/Register';
 import {loginReducer} from 'features/Login';
+import {postReducer} from 'entities/Post';
 import {$api} from 'shared/api/api';
 
 export function createReduxStore(initialState?: RootState) {
@@ -12,6 +13,7 @@ export function createReduxStore(initialState?: RootState) {
         user: userReducer,
         profile: profileReducer,
         editProfile: editProfileReducer,
+        post: postReducer,
         register: registerReducer,
         login: loginReducer,
     }

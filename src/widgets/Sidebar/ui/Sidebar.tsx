@@ -33,6 +33,12 @@ const Sidebar = () => {
                         Profile
                     </div>
                 </AppLink>
+                <AppLink to={routePath.post} className={styles.link}>
+                    {location.pathname === routePath.post ? <ProfilePageActiveIcon/> : <ProfilePageIcon />}
+                    <div className={styles.item}>
+                        Post 1
+                    </div>
+                </AppLink>
             </div>
             <AppButton onClick={onLogout}>
                 Logout

@@ -2,7 +2,7 @@ import {useAppDispatch} from 'shared/lib/useAppDispatch/useAppDispatch';
 import {useSelector} from 'react-redux';
 import {useEffect, useState} from 'react';
 import {fetchProfileDataById, getProfileData, getProfileIsLoading, getProfileServerError} from 'entities/Profile';
-import {ProfileCard} from 'widgets/ProfileCard';
+import {ProfileCard} from 'widgets/Profile';
 import {AppButton, AppButtonTheme} from 'shared/ui/AppButton/AppButton';
 import {EditProfileModal} from 'features/EditProfile';
 
