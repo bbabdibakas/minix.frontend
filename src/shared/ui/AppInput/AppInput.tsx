@@ -1,4 +1,5 @@
 import {ChangeEvent, InputHTMLAttributes} from 'react';
+import {classNames} from 'shared/lib/classNames/classNames';
 import * as styles from './AppInput.module.scss';
 
 interface AppInputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange'> {
@@ -27,7 +28,7 @@ export const AppInput = (props: AppInputProps) => {
     return (
         <div className={styles.wrapper}>
             <input
-                className={`${styles.AppInput} ${hasError ? styles.hasError : ''} ${className || ''}`}
+                className={classNames(styles.AppInput, {[styles.hasError]: hasError}, [className])}
                 value={value}
                 onChange={onChangeValue}
                 placeholder={placeholder}

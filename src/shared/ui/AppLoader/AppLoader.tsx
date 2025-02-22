@@ -1,3 +1,4 @@
+import {classNames} from 'shared/lib/classNames/classNames';
 import * as styles from './AppLoader.module.scss'
 
 interface AppLoaderProps {
@@ -10,6 +11,6 @@ export const AppLoader = (props: AppLoaderProps) => {
     } = props
 
     return (
-        <div className={`${styles.AppLoader} ${className || ''}`}/>
+        <div className={classNames(styles.AppLoader, {}, [className])}/>
     )
 }

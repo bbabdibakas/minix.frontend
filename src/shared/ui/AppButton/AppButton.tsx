@@ -1,4 +1,5 @@
 import {ButtonHTMLAttributes} from 'react'
+import {classNames} from 'shared/lib/classNames/classNames';
 import * as styles from './AppButton.module.scss'
 
 export enum AppButtonTheme {
@@ -23,7 +24,7 @@ export const AppButton = (props: AppButtonProps) => {
     return (
         <button
             type="button"
-            className={`${styles.AppButton} ${styles[theme]} ${className || ''}`}
+            className={classNames(styles.AppButton, {}, [styles[theme], className])}
             {...otherProps}
         >
             {children}
